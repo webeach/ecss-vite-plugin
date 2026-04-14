@@ -1,0 +1,99 @@
+{
+  "name": "@ecss/vite-plugin",
+  "version": "0.0.0",
+  "description": "Vite plugin for ECSS — transforms .ecss files into CSS + JS with HMR support.",
+  "keywords": [
+    "css",
+    "ecss",
+    "plugin",
+    "vite",
+    "vite-plugin"
+  ],
+  "homepage": "https://ecss.webea.ch",
+  "bugs": {
+    "url": "https://github.com/webeach/ecss-vite-plugin/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Ruslan Martynov",
+    "email": "github@webea.ch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webeach/ecss-vite-plugin"
+  },
+  "files": [
+    "dist",
+    "client.d.ts"
+  ],
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "release": "semantic-release",
+    "prepare": "is-ci || husky"
+  },
+  "dependencies": {
+    "@ecss/parser": "^0.1.2",
+    "@ecss/transformer": "^0.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@types/node": "^25.6.0",
+    "husky": "^9.1.7",
+    "is-ci": "^4.1.0",
+    "lint-staged": "^16.1.6",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
+    "semantic-release": "^24.2.9",
+    "tsup": "^8",
+    "typescript": "^5.9.2",
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0"
+  },
+  "lint-staged": {
+    "**/*.{cjs,cts,js,jsx,mjs,mts,ts,tsx}": [
+      "oxlint --fix",
+      "oxfmt"
+    ],
+    "**/*.json": [
+      "oxfmt"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": "^10"
+  },
+  "packageManager": "pnpm@10.7.1"
+}
